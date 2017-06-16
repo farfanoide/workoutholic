@@ -42,6 +42,7 @@ INSTALLED_APPS = [
 
     # Project Apps
     'applications.exercises',
+    'applications.workouts',
 ]
 
 MIDDLEWARE_CLASSES = [
