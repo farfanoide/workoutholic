@@ -3,6 +3,9 @@
 
 from django.conf import settings
 from django.db import models
+from django.urls import reverse
+
+from .presenters import ExercisePresenter
 
 
 class Exercise(models.Model):
@@ -20,3 +23,11 @@ class Exercise(models.Model):
 
     notes = models.TextField()
 
+    def __str__(self):
+        return self.name
+
+    def get_absolute_url(self):
+        return reverse('exercises:show', kwargs={'exercise_id': self.id})
+
+    def to_html(self):
+        return ExercisePresenter(self).render()

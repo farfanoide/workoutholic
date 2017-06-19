@@ -1,0 +1,21 @@
+{% load static %}
+{% load i18n %}
+
+<div class="row">
+    <div class="col-md-6">
+        <dl>
+            <dt>{% trans "Exercise Name" %}</dt>
+            <dd>{{exercise.name}}</dd>
+            <dt>{% trans "Exercise Notes" %}</dt>
+            <dd>{{exercise.notes}}</dd>
+        </dl>
+    </div>
+    <div class="col-md-6">
+        <video src="{{ exercise.video.url }}"
+               loop
+               preload="none"
+               autoplay
+               class="img-thumbnail" >
+        </video>
+    </div>
+</div>

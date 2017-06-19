@@ -40,6 +40,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    # Third Party
+    'bootstrap3',
+
+    # Dev apps
+    'django_extensions',
+
     # Project Apps
     'applications.exercises',
     'applications.workouts',
@@ -127,11 +133,15 @@ USE_L10N = True
 USE_TZ = True
 
 
+PUBLIC_DIR = os.path.join(BASE_DIR, 'public')
+UPLOADS_DIR = os.path.join(PUBLIC_DIR, 'uploads')
+
+MEDIA_ROOT = UPLOADS_DIR
+MEDIA_URL = '/uploads/'
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
-
 STATIC_URL = '/static/'
-
-UPLOADS_DIR = os.path.join(BASE_DIR, 'uploads'),
+STATIC_ROOT = os.path.join(PUBLIC_DIR, 'static')
 
 DEFAULT_STORAGE = FileSystemStorage(location=UPLOADS_DIR)
