@@ -1,0 +1,56 @@
+[
+    {
+        "model": "exercises.exercise",
+        "pk": 1,
+        "fields": {
+            "name": "Dominada estricta",
+            "video": "exercises/videos/dominada_estricta_RmlAGKC.mp4",
+            "notes": "Dominada estricta, con la postura de Retracción metes dominadas entre 4 y 6"
+        }
+    },
+    {
+        "model": "exercises.exercise",
+        "pk": 2,
+        "fields": {
+            "name": "Isométrico en supino",
+            "video": "exercises/videos/isometrico_supino_1fCgkUj.mp4",
+            "notes": "Isométrico con la toma en supino te quedas 3 seg. Entre 4 y 6 reps"
+        }
+    },
+    {
+        "model": "exercises.exercise",
+        "pk": 3,
+        "fields": {
+            "name": "Planchas Lean",
+            "video": "exercises/videos/planchas_lean_taLEfyM.mp4",
+            "notes": "Planchas Lean, adelantas todo lo q puedas sin dejar de ahuecar el pecho ... Entre 10/15"
+        }
+    },
+    {
+        "model": "exercises.exercise",
+        "pk": 4,
+        "fields": {
+            "name": "Trípodes en isométrico",
+            "video": "exercises/videos/tripode_isometrico.mp4",
+            "notes": "Trípodes en isométrico, ojo no quebrar la zona media entre 10 y 20 seg."
+        }
+    },
+    {
+        "model": "exercises.exercise",
+        "pk": 5,
+        "fields": {
+            "name": "Estocada empujando con la rodilla la pared",
+            "video": "exercises/videos/estocada_empuja_pared.mp4",
+            "notes": "Estocada empujando con la rodilla la pared, la pierna de adelante se flexiona\r\n  a 90° con el peso sobre el talón y la de atrás tbn casi a 90° y mantenes el\r\n  empuje 3 seg. Entre 4 y 8 reps con cada"
+        }
+    },
+    {
+        "model": "exercises.exercise",
+        "pk": 6,
+        "fields": {
+            "name": "Isométrico de sentadilla",
+            "video": "exercises/videos/isometrico_sentadilla.mp4",
+            "notes": "Isométrico de sentadilla con vuelos frontales, entre 10 y 20 vuelos"
+        }
+    }
+]
