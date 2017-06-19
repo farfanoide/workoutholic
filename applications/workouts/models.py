@@ -6,7 +6,7 @@ from django.db import models
 from applications.exercises.models import Exercise
 
 
-class Routine(models.Model):
+class Workout(models.Model):
 
     date = models.DateField()
 
@@ -19,10 +19,13 @@ class WorkoutType(models.Model):
         null=False,
     )
 
+    def __str__(self):
+        return self.name
+
 
 class Segment(models.Model):
 
-    routine = models.ForeignKey(Routine)
+    workout = models.ForeignKey(Workout)
 
     workout_type = models.ForeignKey(WorkoutType)
 
