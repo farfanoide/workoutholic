@@ -16,7 +16,7 @@ class WorkoutForm(forms.ModelForm):
 
     class Meta:
         model = Workout
-        fields = ('date',)
+        fields = ('date', 'trainee', )
         widgets = {'date': ComboDateInput}
 
 
@@ -36,7 +36,10 @@ class SegmentForm(forms.ModelForm):
 class SegmentExerciseForm(forms.ModelForm):
 
     class Media:
-        js = (formset_js_path,)
+        js = (
+            formset_js_path,
+            'js/formset_input.js'
+        )
 
     class Meta:
         model = SegmentExercise

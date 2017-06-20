@@ -13,6 +13,8 @@ class Workout(models.Model):
 
     date = models.DateField()
 
+    trainee = models.OneToOneField(settings.AUTH_USER_MODEL)
+
     def get_absolute_url(self):
         return reverse('workouts:show', kwargs={'workout_id': self.id})
 
