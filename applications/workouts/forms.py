@@ -3,7 +3,11 @@
 
 from django import forms
 
-from applications.workouts.models import Workout
+from applications.workouts.models import (
+    Segment,
+    SegmentExercise,
+    Workout,
+)
 from applications.core.widgets import ComboDateInput
 
 class WorkoutForm(forms.ModelForm):
@@ -11,6 +15,24 @@ class WorkoutForm(forms.ModelForm):
     class Meta:
         model = Workout
         fields = ('date',)
-        widgets = {
-            'date': ComboDateInput
-        }
+        widgets = {'date': ComboDateInput}
+
+
+class SegmentForm(forms.ModelForm):
+
+    class Meta:
+        model = Segment
+        fields = (
+            'laps',
+            'notes',
+            'order',
+            'workout',
+            'workout_type',
+        )
+        widgets = {'workout': forms.HiddenInput}
+
+class SegmentExerciseForm(forms.ModelForm):
+
+    class Meta:
+        model = SegmentExercise
+        fields = ('segment', 'exercise', 'reps')

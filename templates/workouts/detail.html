@@ -1,6 +1,12 @@
 {% extends "layouts/base.html" %}
+{% load i18n %}
 
 {% block content %}
     {{workout.to_html}}
+    <div class="actions">
+        <a href="{% url 'workouts:add_segment' workout_id=workout.id %}">
+            {% trans "add segment" %}
+        </a>
+    </div>
 {% endblock content %}
 

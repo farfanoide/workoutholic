@@ -1,0 +1,23 @@
+{% load static %}
+{% load i18n %}
+
+<div class="row">
+    <div class="col-md-6">
+        <dl>
+            <dt>{% trans "Workout date" %}</dt>
+            <dd>{{workout.date}}</dd>
+        </dl>
+    </div>
+    <div class="col-md-6">
+        <ul>
+            {% for segment  in workout.segments %}
+                <li>
+                    <a href="{% url 'workouts:show_segment' segment_id=segment.id  workout_id=workout.id %}">
+                        {{segment.workout_type}}
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+

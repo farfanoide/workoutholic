@@ -4,11 +4,12 @@
 from applications.core.presenters import BasePresenter
 
 __all__ = (
-    'ExercisePresenter',
+    'WorkoutPresenter',
 )
 
-class ExercisePresenter(BasePresenter):
+class WorkoutPresenter(BasePresenter):
 
-    templates_base_dir = 'exercises/presenters/'
-    template_presented_name = 'exercise'
+    templates_base_dir = 'workouts/presenters/'
+    template_presented_name = 'workout'
     templates = {'show': 'show'}
+
