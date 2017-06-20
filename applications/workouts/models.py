@@ -56,8 +56,7 @@ class Segment(models.Model):
         return reverse('workouts:show', kwargs={'workout_id': self.workout.id})
 
     def exercises(self):
-        # TODO: Refactor to use queryset instead of list comprehension
-        return [se.exercise for se in self.segmentexercise_set.all()]
+        return Exercise.objects.filter(segmentexercise__segment=self)
 
 class SegmentExercise(models.Model):
 

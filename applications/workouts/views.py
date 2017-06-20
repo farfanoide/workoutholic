@@ -109,6 +109,7 @@ class EditSegmentView(DetailView):
         return self._segment
 
     def get_context_data(self, **kwargs):
+        self.object = self.get_segment()
         context = super(EditSegmentView, self).get_context_data(**kwargs)
         context.update({
             'formset': self.get_formset()
