@@ -1,0 +1,21 @@
+{
+  "name": "workoutholic",
+  "homepage": "https://github.com/farfanoide/workoutholic",
+  "authors": [
+    "Ivan Karl <ivan6258@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "combodate": "^1.1.0",
+    "moment": "^2.18.1"
+  }
+}

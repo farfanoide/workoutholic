@@ -10,5 +10,7 @@ urlpatterns = [
 
     url(r'^$', ListWorkoutsView.as_view(), name='index'),
 
+    url(r'^create$', CreateWorkoutView.as_view(), name='create'),
+
 ]
 

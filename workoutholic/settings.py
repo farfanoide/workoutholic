@@ -144,4 +144,9 @@ MEDIA_URL = '/uploads/'
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(PUBLIC_DIR, 'static')
 
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'workoutholic', 'static'),
+    os.path.join(BASE_DIR, 'bower_components'),
+]
+
 DEFAULT_STORAGE = FileSystemStorage(location=UPLOADS_DIR)

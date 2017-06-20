@@ -186,3 +186,4 @@ tags
 # End of https://www.gitignore.io/api/vim
 public/*
 fixture_images.tar.gz
+bower_components/
