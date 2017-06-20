@@ -22,6 +22,9 @@ urlpatterns = [
         ShowSegmentView.as_view(),
         name='show_segment'),
 
+    url(r'^(?P<workout_id>\d+)/segment/(?P<segment_id>\d+)/edit$',
+        EditSegmentView.as_view(),
+        name='edit_segment'),
 
 ]
 

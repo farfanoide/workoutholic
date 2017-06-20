@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 # vim: set expandtab tabstop=4 shiftwidth=4:
 
+from django.core.urlresolvers import reverse
+from django.http import HttpResponseRedirect
 from django.views.generic import (
     CreateView,
     DetailView,
@@ -8,11 +10,16 @@ from django.views.generic import (
 )
 
 from applications.workouts.models import Workout, Segment, WorkoutType
-from applications.workouts.forms import WorkoutForm, SegmentForm
+from applications.workouts.forms import (
+    SegmentExerciseFormSet,
+    SegmentForm,
+    WorkoutForm,
+)
 
 __all__ = (
     'AddSegmentView',
     'CreateWorkoutView',
+    'EditSegmentView',
     'ListWorkoutsView',
     'ShowSegmentView',
     'ShowWorkoutView',
@@ -71,3 +78,52 @@ class ShowSegmentView(DetailView):
     template_name = 'segments/detail.html'
     context_object_name = 'segment'
     pk_url_kwarg = 'segment_id'
+
+class EditSegmentView(DetailView):
+
+    model = Segment
+    template_name = 'segments/edit.html'
+    context_object_name = 'segment'
+    pk_url_kwarg = 'segment_id'
+
+    def get_formset(self):
+        formset_kwargs = {
+            'queryset': self.get_segment().segmentexercise_set.all()
+        }
+
+        if self.request.method == 'POST':
+            formset_kwargs.update({
+                'data': self.request.POST,
+                'files': self.request.FILES
+            })
+
+        formset = SegmentExerciseFormSet(**formset_kwargs)
+
+        for form in formset:
+            form.instance.segment = self.get_segment()
+        return formset
+
+    def get_segment(self):
+        if not hasattr(self, '_segment'):
+            self._segment = Segment.objects.get(pk=self.kwargs.get('segment_id'))
+        return self._segment
+
+    def get_context_data(self, **kwargs):
+        context = super(EditSegmentView, self).get_context_data(**kwargs)
+        context.update({
+            'formset': self.get_formset()
+        })
+        return context
+
+    def post(self, request, *args, **kwargs):
+        formset = self.get_formset()
+
+        if formset.is_valid():
+            formset.save()
+            return HttpResponseRedirect(reverse('workouts:show', kwargs={
+                'workout_id': self.kwargs.get('workout_id')
+            }))
+        else:
+            return self.render_to_response(
+                self.get_context_data(formset=formset)
+            )

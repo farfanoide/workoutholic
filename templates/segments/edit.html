@@ -1,0 +1,56 @@
+{% extends "layouts/base.html" %}
+{% load bootstrap3 %}
+{% load formset_tags %}
+{% load i18n %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            <dl>
+                <dt>{% trans "Segment" %}</dt>
+                <dd>{{segment.workout_type}}</dd>
+                <dt>{% trans "Laps" %}</dt>
+                <dd>{{segment.laps}}</dd>
+            </dl>
+            <form action="{% url 'workouts:edit_segment' segment_id=segment.id workout_id=segment.workout.id %}"
+                  method="POST"
+                  accept-charset="utf-8"
+                  enctype="multipart/form-data">
+
+                {% csrf_token %}
+
+                <div data-formset-container data-formset-prefix="{{ formset.prefix }}">
+                    {{ formset.management_form }}
+
+                    <div data-formset-body>
+                        <!-- New forms will be inserted in here -->
+                        {% for field_form in formset %}
+                            <div data-formset-form>
+                                {% bootstrap_form field_form %}
+                            </div>
+                        {% endfor %}
+                    </div>
+
+                    <script type="form-template" data-formset-empty-form>
+{% escapescript %}
+   <div data-formset-form>
+    {% bootstrap_form formset.empty_form %}
+</div>
+{% endescapescript %}
+                    </script>
+
+                    <!-- This button will add a new form when clicked -->
+                    <input type="button" value=" {% trans "add another exercise" %}" data-formset-add class="btn btn-primary">
+
+                    <input type="submit"
+                           class="btn btn-success"
+                           value="{% trans "create" %}" />
+            </form>
+                </div>
+        </div>
+    {% endblock content %}
+
+    {% block extra_js %}
+        {{form.media}}
+        {{formset.media}}
+    {% endblock extra_js %}

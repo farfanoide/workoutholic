@@ -3,6 +3,8 @@
 
 from django import forms
 
+from djangoformsetjs.utils import formset_js_path
+
 from applications.workouts.models import (
     Segment,
     SegmentExercise,
@@ -33,6 +35,22 @@ class SegmentForm(forms.ModelForm):
 
 class SegmentExerciseForm(forms.ModelForm):
 
+    class Media:
+        js = (formset_js_path,)
+
     class Meta:
         model = SegmentExercise
         fields = ('segment', 'exercise', 'reps')
+        widgets = {
+            'segment': forms.HiddenInput
+        }
+
+SegmentExerciseFormSet = forms.modelformset_factory(
+    SegmentExercise,
+    form=SegmentExerciseForm,
+    can_delete=True,
+    min_num=1,
+    validate_min=True,
+    extra=0,
+    fields=('exercise', 'reps')
+)

@@ -42,6 +42,7 @@ INSTALLED_APPS = [
 
     # Third Party
     'bootstrap3',
+    'djangoformsetjs',
 
     # Dev apps
     'django_extensions',

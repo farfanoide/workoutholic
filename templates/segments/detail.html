@@ -16,6 +16,12 @@
                     {{exercise.to_html}}
                 </div>
             {% endfor %}
+            <div class="actions">
+                <a class="btn btn-info"
+                   href="{% url 'workouts:edit_segment' workout_id=segment.workout.id segment_id=segment.id %}">
+                    {% trans "Add Exercises" %}
+                </a>
+            </div>
         </div>
     </div>
 {% endblock content %}
