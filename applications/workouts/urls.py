@@ -12,5 +12,6 @@ urlpatterns = [
 
     url(r'^create$', CreateWorkoutView.as_view(), name='create'),
 
+    url(r'^(?P<workout_id>\d+)$', ShowWorkoutView.as_view(), name='show'),
 ]
 

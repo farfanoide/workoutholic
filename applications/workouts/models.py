@@ -2,6 +2,7 @@
 # vim: set expandtab tabstop=4 shiftwidth=4:
 
 from django.db import models
+from django.urls import reverse
 
 from applications.exercises.models import Exercise
 
@@ -9,6 +10,12 @@ from applications.exercises.models import Exercise
 class Workout(models.Model):
 
     date = models.DateField()
+
+    def get_absolute_url(self):
+        return reverse('workouts:show', kwargs={'workout_id': self.id})
+
+    def to_html(self):
+        return str(self.date)
 
 
 class WorkoutType(models.Model):
