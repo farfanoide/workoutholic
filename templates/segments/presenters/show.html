@@ -1,0 +1,14 @@
+{% load i18n %}
+<dl>
+    <dt>{% trans "Segment" %}</dt>
+    <dd>{{segment.workout_type}}</dd>
+    <dt>{% trans "Laps" %}</dt>
+    <dd>{{segment.laps}}</dd>
+</dl>
+
+{% for exercise in exercises %}
+    <div class="exercise-wrapper well">
+        {{exercise}}
+    </div>
+{% endfor %}
+

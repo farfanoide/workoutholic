@@ -15,6 +15,7 @@ from applications.workouts.forms import (
     SegmentForm,
     WorkoutForm,
 )
+from applications.workouts.presenters import SegmentPresenter
 from applications.core.presenters import BaseListPresenter
 
 __all__ = (
@@ -49,6 +50,10 @@ class CreateWorkoutView(CreateView):
     form_class = WorkoutForm
     template_name = 'workouts/create.html'
     context_object_name = 'workout'
+
+    def get_success_url(self):
+        return reverse('workouts:add_segment',
+                       kwargs={'workout_id': self.object.id})
 
 class ShowWorkoutView(DetailView):
 
@@ -89,6 +94,14 @@ class ShowSegmentView(DetailView):
     template_name = 'segments/detail.html'
     context_object_name = 'segment'
     pk_url_kwarg = 'segment_id'
+
+    def get_context_data(self, **kwargs):
+        context = super(ShowSegmentView, self).get_context_data(**kwargs)
+        context.update({
+            'segment': SegmentPresenter(context.get('segment')),
+        })
+        return context
+
 
 class EditSegmentView(DetailView):
 

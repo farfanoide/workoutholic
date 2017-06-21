@@ -5,20 +5,12 @@
 {% block content %}
     <div class="row">
         <div class="col-md-12">
-            <dl>
-                <dt>{% trans "Segment" %}</dt>
-                <dd>{{segment.workout_type}}</dd>
-                <dt>{% trans "Laps" %}</dt>
-                <dd>{{segment.laps}}</dd>
-            </dl>
-            {% for exercise in segment.exercises %}
-                <div class="exercise-wrapper well">
-                    {{exercise.to_html}}
-                </div>
-            {% endfor %}
+
+            {{segment}}
+
             <div class="actions">
                 <a class="btn btn-info"
-                   href="{% url 'workouts:edit_segment' workout_id=segment.workout.id segment_id=segment.id %}">
+                   href="{{segment.edit_url}}">
                     {% trans "Add Exercises" %}
                 </a>
             </div>

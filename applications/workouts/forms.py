@@ -25,11 +25,10 @@ class SegmentForm(forms.ModelForm):
     class Meta:
         model = Segment
         fields = (
+            'workout_type',
             'laps',
             'notes',
-            'order',
             'workout',
-            'workout_type',
         )
         widgets = {'workout': forms.HiddenInput}
 
