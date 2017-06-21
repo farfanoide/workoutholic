@@ -57,8 +57,13 @@ class Segment(models.Model):
 
     laps = models.PositiveSmallIntegerField(default=1)
 
+    def __str__(self):
+        return str(self.workout_type)
+
     def get_absolute_url(self):
-        return reverse('workouts:show', kwargs={'workout_id': self.workout.id})
+        return reverse('workouts:show_segment', kwargs={
+            'workout_id': self.workout.id, 'segment_id': self.id
+        })
 
     def exercises(self):
         return Exercise.objects.filter(segmentexercise__segment=self)

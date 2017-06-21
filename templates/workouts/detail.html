@@ -2,11 +2,14 @@
 {% load i18n %}
 
 {% block content %}
+
     {{workout.to_html}}
+
     <div class="actions">
-        <a href="{% url 'workouts:add_segment' workout_id=workout.id %}">
+        <a href="{% url 'workouts:add_segment' workout_id=workout.id %}"
+           class="btn btn-success">
             {% trans "add segment" %}
         </a>
     </div>
-{% endblock content %}
 
+{% endblock content %}

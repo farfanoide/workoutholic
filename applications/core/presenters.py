@@ -8,6 +8,7 @@ class BasePresenter(object):
     templates_base_dir = 'core/presenters/'
     template_presented_name = 'object'
     templates_suffix = '.html'
+    templates = {'show': 'show'}
 
     # TODO: use better name for presented
     def __init__(self, presented):
