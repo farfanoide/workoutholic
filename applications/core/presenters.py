@@ -3,6 +3,7 @@
 
 from django.template import loader
 
+
 class BasePresenter(object):
 
     templates_base_dir = 'core/presenters/'
@@ -10,12 +11,14 @@ class BasePresenter(object):
     templates_suffix = '.html'
     templates = {'show': 'show'}
 
-    # TODO: use better name for presented
     def __init__(self, presented):
         self.presented = presented
 
     def __str__(self):
         return self.render()
+
+    def __getattr__(self, name):
+        return getattr(self.presented, name)
 
     def get_template_name(self, name='show'):
         template_name =  "{base_dir}{template}{suffix}".format(
