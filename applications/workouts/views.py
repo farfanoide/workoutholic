@@ -36,7 +36,10 @@ class ListWorkoutsView(ListView):
     def get_context_data(self, **kwargs):
         context = super(ListWorkoutsView, self).get_context_data(**kwargs)
         context.update({
-            'workouts': BaseListPresenter(context.get('workouts'))
+            'workouts': BaseListPresenter(
+                context.get('workouts'),
+                title="Available Workouts",
+            )
         })
         return context
 

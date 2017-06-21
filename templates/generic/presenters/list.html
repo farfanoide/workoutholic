@@ -1,17 +1,20 @@
 {% load i18n %}
 
-<ul class="list-group">
-    {% for object in queryset %}
-        <li class="list-group-item">
-            <a href="{{object.get_absolute_url}}">
-                {{object}}
-            </a>
-        </li>
-    {% empty %}
-        <li class="list-group-item">
-            {% trans "None available yet" %}
-        </li>
-    {% endfor %}
-</ul>
-
-
+<div class="panel panel-default">
+    {% if title %}
+        <div class="panel-heading">{{title}}</div>
+    {% endif %}
+    <ul class="list-group">
+        {% for object in queryset %}
+            <li class="list-group-item">
+                <a href="{{object.get_absolute_url}}">
+                    {{object}}
+                </a>
+            </li>
+        {% empty %}
+            <li class="list-group-item">
+                {% trans "None available yet" %}
+            </li>
+        {% endfor %}
+    </ul>
+</div>

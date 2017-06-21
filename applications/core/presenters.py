@@ -38,3 +38,12 @@ class BaseListPresenter(BasePresenter):
     templates_base_dir = 'generic/presenters/'
     template_presented_name = 'queryset'
     templates = {'show': 'list'}
+
+    def __init__(self, presented, title=None):
+        self.presented = presented
+        self.title = title
+
+    def get_context(self):
+        context = super(BaseListPresenter, self).get_context()
+        context.update({'title': self.title})
+        return context
