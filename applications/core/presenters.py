@@ -14,6 +14,9 @@ class BasePresenter(object):
     def __init__(self, presented):
         self.presented = presented
 
+    def __str__(self):
+        return self.render()
+
     def get_template_name(self, name='show'):
         template_name =  "{base_dir}{template}{suffix}".format(
             base_dir=self.templates_base_dir,
@@ -31,8 +34,10 @@ class BasePresenter(object):
     def get_context(self):
         return {self.template_presented_name: self.presented}
 
-    def __str__(self):
-        return self.render()
+    @classmethod
+    def from_list(cls, presented_list):
+        return [cls(presented) for presented in presented_list]
+
 
 class BaseListPresenter(BasePresenter):
 

@@ -9,7 +9,7 @@ from django.views.generic import (
     ListView,
 )
 
-from applications.workouts.models import Workout, Segment, WorkoutType
+from applications.workouts.models import Workout, Segment
 from applications.workouts.forms import (
     SegmentExerciseFormSet,
     SegmentForm,
@@ -44,6 +44,7 @@ class ListWorkoutsView(ListView):
         })
         return context
 
+
 class CreateWorkoutView(CreateView):
 
     model = Workout
@@ -55,12 +56,14 @@ class CreateWorkoutView(CreateView):
         return reverse('workouts:add_segment',
                        kwargs={'workout_id': self.object.id})
 
+
 class ShowWorkoutView(DetailView):
 
     model = Workout
     template_name = 'workouts/detail.html'
     context_object_name = 'workout'
     pk_url_kwarg = 'workout_id'
+
 
 class AddSegmentView(CreateView):
 
@@ -83,9 +86,9 @@ class AddSegmentView(CreateView):
 
     def get_workout(self):
         if not hasattr(self, '_workout'):
-            self._workout = Workout.objects.get(pk=self.kwargs.get('workout_id'))
+            self._workout = Workout.objects.get(
+                pk=self.kwargs.get('workout_id'))
         return self._workout
-
 
 
 class ShowSegmentView(DetailView):
@@ -129,15 +132,14 @@ class EditSegmentView(DetailView):
 
     def get_segment(self):
         if not hasattr(self, '_segment'):
-            self._segment = Segment.objects.get(pk=self.kwargs.get('segment_id'))
+            self._segment = Segment.objects.get(
+                pk=self.kwargs.get('segment_id'))
         return self._segment
 
     def get_context_data(self, **kwargs):
         self.object = self.get_segment()
         context = super(EditSegmentView, self).get_context_data(**kwargs)
-        context.update({
-            'formset': self.get_formset()
-        })
+        context.update({'formset': self.get_formset()})
         return context
 
     def post(self, request, *args, **kwargs):

@@ -12,6 +12,7 @@ __all__ = (
     'WorkoutPresenter',
 )
 
+
 class WorkoutPresenter(BasePresenter):
 
     templates_base_dir = 'workouts/presenters/'
@@ -27,6 +28,7 @@ class WorkoutPresenter(BasePresenter):
         })
         return context
 
+
 class SegmentPresenter(BasePresenter):
 
     templates_base_dir = 'segments/presenters/'
@@ -35,7 +37,9 @@ class SegmentPresenter(BasePresenter):
     def get_context(self):
         context = super(SegmentPresenter, self).get_context()
         context.update({
-            'exercises': [ExercisePresenter(e) for e in self.presented.exercises()]
+            'exercises': ExercisePresenter.from_list(
+                self.presented.exercises()
+            )
         })
         return context
 
