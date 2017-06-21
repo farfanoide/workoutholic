@@ -44,8 +44,9 @@ class BaseListPresenter(BasePresenter):
         self.presented = presented
         self.title = title
 
-    def __iter__(self):
-        return [self.base_presenter(item) for item in presented]
+    # def __iter__(self):
+    #     TODO: add ability to have base_presenter
+    #     return [self.base_presenter(item) for item in presented]
 
     def get_context(self):
         context = super(BaseListPresenter, self).get_context()
