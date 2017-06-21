@@ -13,16 +13,21 @@ class Workout(models.Model):
 
     date = models.DateField()
 
-    trainee = models.OneToOneField(settings.AUTH_USER_MODEL)
+    trainee = models.ForeignKey(settings.AUTH_USER_MODEL)
+
+    def __str__(self):
+        return "Workout for {user} on {date}".format(
+            user=self.trainee, date=self.date
+        )
+
+    def __repr__(self):
+        return '<{string_repr}>'.format(string_repr=self.__str__())
 
     def get_absolute_url(self):
         return reverse('workouts:show', kwargs={'workout_id': self.id})
 
     def to_html(self):
         return WorkoutPresenter(self).render()
-
-    def __str__(self):
-        return str(self.date)
 
     def segments(self):
         return self.segment_set.all()
@@ -57,6 +62,7 @@ class Segment(models.Model):
 
     def exercises(self):
         return Exercise.objects.filter(segmentexercise__segment=self)
+
 
 class SegmentExercise(models.Model):
 

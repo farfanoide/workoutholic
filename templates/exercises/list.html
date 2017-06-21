@@ -2,18 +2,8 @@
 
 {% block content %}
     <div class="row">
-        <div class="col-md-12">
-            <ul>
-                {% for exercise in exercises %}
-                    <li>
-                        <a href="{{exercise.get_absolute_url}}">
-                            {{exercise}}
-                        </a>
-                    </li>
-                {% empty %}
-                    <li>No Exercises Yet</li>
-                {% endfor %}
-            </ul>
+        <div class="col-md-6">
+            {{exercises}}
         </div>
     </div>
 {% endblock content %}

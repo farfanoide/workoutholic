@@ -9,6 +9,7 @@ from django.views.generic import (
 )
 
 from applications.exercises.models import Exercise
+from applications.core.presenters import BaseListPresenter
 
 __all__ = (
     'ListExercisesView',
@@ -22,6 +23,14 @@ class ListExercisesView(ListView):
     model = Exercise
     template_name = 'exercises/list.html'
     context_object_name = 'exercises'
+
+    def get_context_data(self, **kwargs):
+        context = super(ListExercisesView, self).get_context_data(**kwargs)
+        context.update({
+            'exercises': BaseListPresenter(context.get('exercises'))
+        })
+        return context
+
 
 class CreateExerciseView(CreateView):
 

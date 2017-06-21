@@ -15,6 +15,7 @@ from applications.workouts.forms import (
     SegmentForm,
     WorkoutForm,
 )
+from applications.core.presenters import BaseListPresenter
 
 __all__ = (
     'AddSegmentView',
@@ -31,6 +32,13 @@ class ListWorkoutsView(ListView):
     model = Workout
     template_name = 'workouts/list.html'
     context_object_name = 'workouts'
+
+    def get_context_data(self, **kwargs):
+        context = super(ListWorkoutsView, self).get_context_data(**kwargs)
+        context.update({
+            'workouts': BaseListPresenter(context.get('workouts'))
+        })
+        return context
 
 class CreateWorkoutView(CreateView):
 
