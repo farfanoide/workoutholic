@@ -12,7 +12,9 @@ urlpatterns = [
 
     url(r'^admin/', admin.site.urls),
 
-    url(r'^$', TemplateView.as_view(template_name='workouts/home.html')),
+    url(r'^$',
+        TemplateView.as_view(template_name='workouts/home.html'),
+        name='home'),
 
     url(r'^exercises/',
         include('applications.exercises.urls', namespace='exercises')),
