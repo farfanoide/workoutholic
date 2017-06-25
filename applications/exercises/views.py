@@ -3,7 +3,6 @@
 
 from django.views.generic import (
     CreateView,
-    CreateView,
     DetailView,
     ListView,
 )
